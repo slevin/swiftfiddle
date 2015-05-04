@@ -1,14 +1,20 @@
 //: Playground - noun: a place where people can play
 
-import UIKit
-import XCPlayground
+import Foundation
 
-let view:UIView = UIView(frame: CGRectMake(0, 0, 300, 300))
+let input = "(+ 1 (- 4 7))"
 
-XCPShowView("mine", view)
+func runIt(prog:String) -> Int {
+    return 3
+}
 
-NSLog("Whats up")
+println(runIt("(+ 1 2)"))
+println(runIt("(+ 2 2)"))
 
-var plane = UIImage(contentsOfFile: "plane.png")
+
+
+
+
+
 
 
