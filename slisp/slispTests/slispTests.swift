@@ -26,5 +26,9 @@ class slispTests: XCTestCase {
         let r = runIt("(+ 1 2)")
         XCTAssert(r == 3)
     }
-    
+
+    func testIntoArray() {
+        let a = intoArray("(+ 1 2)")
+        XCTAssert(a == ["+", "1", "2"])
+    }
 }
