@@ -8,11 +8,16 @@
 
 import Foundation
 
+public enum Atom {
+    case StringAtom(String)
+    case IntAtom(Int)
+}
+
 public func runIt(code: String) -> Int {
     return 3
 }
 
-public func intoArray(code: String) -> [String] {
+public func readFun(code: String) -> [String] {
     /*
     for each char if ( new array
     if " " add string to list
@@ -35,4 +40,8 @@ public func intoArray(code: String) -> [String] {
         }
     }
     return res
+}
+
+public func eval(sexp: [Atom]) -> Atom {
+    return Atom.IntAtom(1)
 }

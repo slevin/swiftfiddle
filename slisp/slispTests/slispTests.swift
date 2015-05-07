@@ -28,7 +28,13 @@ class slispTests: XCTestCase {
     }
 
     func testIntoArray() {
-        let a = intoArray("(+ 1 2)")
+        let a = readFun("(+ 1 2)")
         XCTAssert(a == ["+", "1", "2"])
+    }
+    
+    func testPlusEval() {
+        let s = [Atom.StringAtom("+"), Atom.IntAtom(1), Atom.IntAtom(2)]
+        let e = eval(s)
+        XCTAssert(e == Atom.IntAtom(3))
     }
 }
