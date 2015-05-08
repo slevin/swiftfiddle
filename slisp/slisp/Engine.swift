@@ -8,9 +8,21 @@
 
 import Foundation
 
-public enum Atom {
+public enum Atom : Equatable {
     case StringAtom(String)
     case IntAtom(Int)
+}
+
+public func ==(a: Atom, b: Atom) -> Bool {
+    switch (a, b) {
+    case (.IntAtom(let a), .IntAtom(let b)) where a == b: return true
+    default: return false
+    }
+    return false
+}
+
+public func !=(a: Atom, b:Atom) -> Bool {
+    return !(a == b);
 }
 
 public func runIt(code: String) -> Int {

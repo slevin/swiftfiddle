@@ -10,6 +10,21 @@ import Cocoa
 import XCTest
 import slisp
 
+class atomTests: XCTestCase {
+
+    func testIntAtomsEqual() {
+        XCTAssertEqual(Atom.IntAtom(0), Atom.IntAtom(0))
+    }
+
+    func testDifferentIntAtomsNotEqual() {
+        XCTAssertNotEqual(Atom.IntAtom(0), Atom.IntAtom(1))
+    }
+
+    func testDifferentAtomTypesNotEqual() {
+        XCTAssertNotEqual(Atom.StringAtom("hello"), Atom.IntAtom(1))
+    }
+}
+
 class slispTests: XCTestCase {
     
     override func setUp() {
@@ -33,8 +48,8 @@ class slispTests: XCTestCase {
     }
     
     func testPlusEval() {
-        let s = [Atom.StringAtom("+"), Atom.IntAtom(1), Atom.IntAtom(2)]
+        let s:[Atom] = [.StringAtom("+"), .IntAtom(1), .IntAtom(2)]
         let e = eval(s)
-        XCTAssert(e == Atom.IntAtom(3))
+        XCTAssertEqual(e, .IntAtom(3))
     }
 }
