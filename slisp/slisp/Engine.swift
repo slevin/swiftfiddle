@@ -8,9 +8,16 @@
 
 import Foundation
 
-public enum Atom : Equatable {
+public enum Atom : Equatable, Printable {
     case StringAtom(String)
     case IntAtom(Int)
+    
+    public var description : String {
+        switch self {
+        case .StringAtom(let s): return "StringAtom: \(s)"
+        case .IntAtom(let i): return "IntAtom: \(i)"
+        }
+    }
 }
 
 public func ==(a: Atom, b: Atom) -> Bool {
@@ -18,12 +25,9 @@ public func ==(a: Atom, b: Atom) -> Bool {
     case (.IntAtom(let a), .IntAtom(let b)) where a == b: return true
     default: return false
     }
-    return false
 }
 
-public func !=(a: Atom, b:Atom) -> Bool {
-    return !(a == b);
-}
+
 
 public func runIt(code: String) -> Int {
     return 3
@@ -55,5 +59,12 @@ public func readFun(code: String) -> [String] {
 }
 
 public func eval(sexp: [Atom]) -> Atom {
-    return Atom.IntAtom(1)
+    let f = first(sexp)
+    let r = dropFirst(sexp)
+    return reduce(r, Atom.IntAtom(0), { (a: Atom, b: Atom) -> Atom in
+        switch (a, b) {
+        case (.IntAtom(let a), .IntAtom(let b)) : return .IntAtom(a + b)
+        default: return Atom.IntAtom(0)
+        }
+    })
 }

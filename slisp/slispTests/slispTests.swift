@@ -52,4 +52,10 @@ class slispTests: XCTestCase {
         let e = eval(s)
         XCTAssertEqual(e, .IntAtom(3))
     }
+    
+    func testPlusEvalMultiple() {
+        let s:[Atom] = [.StringAtom("+"), .IntAtom(1), .IntAtom(2), .IntAtom(1)]
+        let e = eval(s)
+        XCTAssertEqual(e, .IntAtom(4))
+    }
 }
