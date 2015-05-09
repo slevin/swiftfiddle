@@ -58,4 +58,11 @@ class slispTests: XCTestCase {
         let e = eval(s)
         XCTAssertEqual(e, .IntAtom(4))
     }
+    
+    func testMinusEval() {
+        let s:[Atom] = [.StringAtom("-"), .IntAtom(1), .IntAtom(2)]
+        let e = eval(s)
+        XCTAssertEqual(e, .IntAtom(-1))
+    }
 }
+a
