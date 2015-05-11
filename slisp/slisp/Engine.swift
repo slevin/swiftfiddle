@@ -65,6 +65,7 @@ public func eval(sexp: [Atom]) -> Atom {
     case .StringAtom(let s) :
         switch (s) {
         case "+" :
+            // some comment
             return reduce(r, Atom.IntAtom(0), { (a: Atom, b: Atom) -> Atom in
                 switch (a, b) {
                 case (.IntAtom(let a), .IntAtom(let b)) : return .IntAtom(a + b)
