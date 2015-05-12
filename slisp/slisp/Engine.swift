@@ -59,13 +59,12 @@ public func readFun(code: String) -> [String] {
 }
 
 public func eval(sexp: [Atom]) -> Atom {
-    let f = first(sexp)
+    let f:Atom = first(sexp)!
     let r = dropFirst(sexp)
     switch (f) {
     case .StringAtom(let s) :
         switch (s) {
         case "+" :
-            // some comment
             return reduce(r, Atom.IntAtom(0), { (a: Atom, b: Atom) -> Atom in
                 switch (a, b) {
                 case (.IntAtom(let a), .IntAtom(let b)) : return .IntAtom(a + b)
@@ -75,12 +74,14 @@ public func eval(sexp: [Atom]) -> Atom {
         case "-" :
             return reduce(r, Atom.IntAtom(0), { (a: Atom, b: Atom) -> Atom in
                 switch (a, b) {
-                case (.IntAtom(let a), .IntAtom(let b)) : return .IntAtom(a + b)
+                case (.IntAtom(let a), .IntAtom(let b)) : return .IntAtom(a - b)
                 default: return Atom.IntAtom(0)
                 }
             })
         default :
             return Atom.IntAtom(0)
         }
+    default:
+        return Atom.IntAtom(0)
     }
-}bn
+}
