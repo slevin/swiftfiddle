@@ -34,12 +34,6 @@ public func runIt(code: String) -> Int {
 }
 
 public func readFun(code: String) -> [String] {
-    /*
-    for each char if ( new array
-    if " " add string to list
-    if ) return array
-    otherwise add string to accumulator
-    */
     var res:[String] = [String]()
     var current = ""
     for c in code {

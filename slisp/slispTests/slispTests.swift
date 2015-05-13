@@ -42,11 +42,18 @@ class slispTests: XCTestCase {
         XCTAssert(r == 3)
     }
 
-    func testIntoArray() {
+    func testParseIntoArray() {
         let a = readFun("(+ 1 2)")
         XCTAssert(a == ["+", "1", "2"])
     }
+
+    func testParseIntoArrayNested() {
+        let a = readFun("(+ 1 (+ 2 3)")
+        XCTAssertEqual(a, ["+", "1", ["+", "2", "3"]])
+    }
     
+    // test for extra spaces
+        
     func testPlusEval() {
         let s:[Atom] = [.StringAtom("+"), .IntAtom(1), .IntAtom(2)]
         let e = eval(s)
