@@ -72,7 +72,7 @@ public func eval(sexp: [Atom]) -> Atom {
                 }
             })
         case "-" :
-            return reduce(r, Atom.IntAtom(0), { (a: Atom, b: Atom) -> Atom in
+            return reduce(dropFirst(r), first(r)!, { (a: Atom, b: Atom) -> Atom in
                 switch (a, b) {
                 case (.IntAtom(let a), .IntAtom(let b)) : return .IntAtom(a - b)
                 default: return Atom.IntAtom(0)
